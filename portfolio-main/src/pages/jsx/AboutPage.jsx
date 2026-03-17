@@ -24,7 +24,6 @@ const AboutPage = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -39,7 +38,6 @@ const AboutPage = () => {
       { threshold: 0.1, rootMargin: '-50px' }
     );
 
-    // Observe all sections
     Object.values(sectionRefs).forEach(ref => {
       if (ref.current) {
         observer.observe(ref.current);
@@ -66,34 +64,35 @@ const AboutPage = () => {
     }
   };
 
-  // Skills data with icons
   const skillCategories = [
     {
-      title: "Development",
+      title: "Programming & Core CS",
       icon: "fas fa-laptop-code",
       skills: [
-        { name: "Full Stack Web Development", percentage: 80, icon: "fas fa-code" },
-        { name: "Competitive Programming", percentage: 70, icon: "fas fa-trophy" },
-        { name: "Database Management", percentage: 70, icon: "fas fa-database" }
+        { name: "Java", percentage: 85, icon: "fab fa-java" },
+        { name: "Python", percentage: 85, icon: "fab fa-python" },
+        { name: "SQL", percentage: 80, icon: "fas fa-database" },
+        { name: "Data Structures & Algorithms", percentage: 80, icon: "fas fa-code" },
+        { name: "DBMS & OOP", percentage: 75, icon: "fas fa-server" }
       ]
     },
     {
-      title: "Creative & Security",
-      icon: "fas fa-shield-alt",
+      title: "Web, Tools & Data",
+      icon: "fas fa-globe",
       skills: [
-        { name: "Cyber Security", percentage: 40, icon: "fas fa-user-shield" },
-        { name: "Video Editing", percentage: 85, icon: "fas fa-video" },
-        { name: "Photo Editing & Design", percentage: 85, icon: "fas fa-palette" }
+        { name: "React", percentage: 80, icon: "fab fa-react" },
+        { name: "Django", percentage: 80, icon: "fas fa-layer-group" },
+        { name: "Spring Boot", percentage: 70, icon: "fas fa-leaf" },
+        { name: "Docker / CI-CD / Jenkins", percentage: 70, icon: "fas fa-cogs" },
+        { name: "Machine Learning / Data Analysis", percentage: 75, icon: "fas fa-chart-line" }
       ]
     }
   ];
 
   return (
     <div className="about-page">
-      {/* Common Background Animations */}
       <BackgroundAnimations />
 
-      {/* Common Navigation */}
       <Navigation 
         showMenu={showMenu}
         isMobile={isMobile}
@@ -102,18 +101,15 @@ const AboutPage = () => {
         currentPage="about"
       />
 
-      {/* Main Content */}
       <div className={`content-overlay ${showMenu && isMobile ? 'expanded' : ''}`}>
         <main className="main-content">
           <section className="about-section">
-            {/* Section Header */}
             <div className="section-header animate-fade-in">
               <h1 className="text-gradient">About <span>Me</span></h1>
               <p className="subtitle">Get to know me better</p>
               <div className="header-divider"></div>
             </div>
 
-            {/* Personal Info Section */}
             <div 
               id="personal"
               ref={sectionRefs.personal}
@@ -122,44 +118,36 @@ const AboutPage = () => {
               <div className="info-card">
                 <div className="info-image">
                   <img 
-                    src={import.meta.env.BASE_URL + 'assets/chakri-profile.jpg'} 
-                    alt="P. Lakshmi Chakradhar" 
+                    src={import.meta.env.BASE_URL + 'assets/nandu-profile.jpg'} 
+                    alt="Narendra Budigi" 
                     className="profile-img"
                     onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x500/00ff00/000000?text=P.+LAKSHMI+CHAKRADHAR';
+                      e.target.src = 'https://via.placeholder.com/400x500/00ff00/000000?text=NARENDRA+BUDIGI';
                     }}
                   />
                   <div className="image-overlay"></div>
                 </div>
                 <div className="info-content">
                   <div className="info-header">
-                    <h1>Pothuganti Lakshmi Chakradhar</h1>
-                    <h3 className="text-gradient">BTech Computer Science Engineer</h3>
+                    <h1>Narendra Budigi</h1>
+                    <h3 className="text-gradient">BTech Computer Science Student | Data Science & Full Stack Developer</h3>
                   </div>
                   
                   <p className="bio">
-                    Innovative problem solver passionate about developing cutting-edge solutions and exploring emerging technologies. 
-                    With a strong foundation in computer science and hands-on experience in various domains, I strive to create impactful solutions.
+                    Motivated BTech student with a strong foundation in Data Science and Full Stack Development. 
+                    Skilled in Java, Python, SQL, and modern web technologies with hands-on project experience in 
+                    building scalable applications and data-driven solutions. Seeking opportunities in Software 
+                    Development, Full Stack Development, or Data Science roles.
                   </p>
                   
                   <div className="personal-details">
-                    <div className="detail-item">
-                      <div className="detail-icon">
-                        <i className="fas fa-birthday-cake"></i>
-                      </div>
-                      <div className="detail-text">
-                        <span className="detail-label">Date of Birth</span>
-                        <p className="detail-value">18 August 2006</p>
-                      </div>
-                    </div>
-                    
                     <div className="detail-item">
                       <div className="detail-icon">
                         <i className="fas fa-envelope"></i>
                       </div>
                       <div className="detail-text">
                         <span className="detail-label">Email</span>
-                        <p className="detail-value">plchakradhar@gmail.com</p>
+                        <p className="detail-value">narendrayadavbudigi@gmail.com</p>
                       </div>
                     </div>
                     
@@ -169,7 +157,7 @@ const AboutPage = () => {
                       </div>
                       <div className="detail-text">
                         <span className="detail-label">Phone</span>
-                        <p className="detail-value">+91 9398429136</p>
+                        <p className="detail-value">8309377748</p>
                       </div>
                     </div>
                     
@@ -179,35 +167,43 @@ const AboutPage = () => {
                       </div>
                       <div className="detail-text">
                         <span className="detail-label">Location</span>
-                        <p className="detail-value">Proddatur, India</p>
+                        <p className="detail-value">Chagalamarri, Kurnool, Andhra Pradesh, India</p>
+                      </div>
+                    </div>
+
+                    <div className="detail-item">
+                      <div className="detail-icon">
+                        <i className="fab fa-linkedin"></i>
+                      </div>
+                      <div className="detail-text">
+                        <span className="detail-label">LinkedIn</span>
+                        <p className="detail-value">linkedin.com/in/narendrabudigi</p>
                       </div>
                     </div>
                   </div>
                   
                   <div className="resume-buttons">
-  <a
-    href={`${import.meta.env.BASE_URL}assets/PothugantiLakshmiChakradharResume.pdf`}
-    className="btn btn-primary"
-    download
-  >
-    <i className="fas fa-download"></i> Download Resume
-  </a>
+                    <a
+                      href={`${import.meta.env.BASE_URL}assets/NARENDRA-RESUME-D.pdf`}
+                      className="btn btn-primary"
+                      download
+                    >
+                      <i className="fas fa-download"></i> Download Resume
+                    </a>
 
-  <a
-    href={`${import.meta.env.BASE_URL}assets/PothugantiLakshmiChakradharResume.pdf`}
-    className="btn btn-outline"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <i className="fas fa-eye"></i> View Resume
-  </a>
-</div>
-
+                    <a
+                      href={`${import.meta.env.BASE_URL}assets/NARENDRA-RESUME-D.pdf`}
+                      className="btn btn-outline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fas fa-eye"></i> View Resume
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Experience Section */}
             <div 
               id="experience"
               ref={sectionRefs.experience}
@@ -224,20 +220,24 @@ const AboutPage = () => {
                 <div className="timeline-item">
                   <div className="timeline-marker"></div>
                   <div className="timeline-content-wrapper">
-                    <div className="timeline-date">2023 - 2024</div>
+                    <div className="timeline-date">June 2023 - Dec 2023</div>
                     <div className="timeline-content">
-                      <h3>CodeOn Technologies</h3>
-                      <div className="timeline-company">Web Development Intern</div>
+                      <h3>Young Mind Technologies</h3>
+                      <div className="timeline-company">Python & Web Development Intern</div>
                       <p className="timeline-description">
-                        Web Development & UI/UX Design – Built and optimized responsive web pages using HTML, CSS, and JavaScript, 
-                        enhanced interfaces with modern, user-friendly designs and animations, and collaborated with a team to 
-                        integrate APIs and test real-world application functionalities.
+                        Developed and maintained web applications using Python and Django, including backend logic, 
+                        APIs, and database integration. Built full-stack modules by integrating Django backend with 
+                        HTML, CSS, and JavaScript front-end. Executed CRUD operations, user authentication, and 
+                        RESTful APIs for scalable application features. Collaborated with senior developers to debug 
+                        issues, perform code reviews, and improve code quality.
                       </p>
                       <div className="tech-used">
-                        <span className="tech-tag">Figma</span>
+                        <span className="tech-tag">Python</span>
+                        <span className="tech-tag">Django</span>
                         <span className="tech-tag">HTML</span>
                         <span className="tech-tag">CSS</span>
                         <span className="tech-tag">JavaScript</span>
+                        <span className="tech-tag">REST APIs</span>
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,6 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* Education Section */}
             <div 
               id="education"
               ref={sectionRefs.education}
@@ -266,20 +265,19 @@ const AboutPage = () => {
                     </div>
                     <div className="edu-title">
                       <h3>KL University</h3>
-                      <h4>BTech in Computer Science & Engineering</h4>
+                      <h4>Bachelor of Technology in Computer Science</h4>
                     </div>
                   </div>
                   <div className="edu-details">
                     <div className="edu-detail">
                       <i className="fas fa-calendar-alt"></i>
-                      <span>2024 - PRESENT</span>
+                      <span>June 2024 - May 2027</span>
                     </div>
                     <div className="edu-detail">
                       <i className="fas fa-percentage"></i>
-                      <span>GPA: 9.02/10</span>
+                      <span>CGPA: 9.5</span>
                     </div>
                   </div>
-                  {/* <div className="edu-status current">Current</div> */}
                 </div>
                 
                 <div className="education-card">
@@ -288,49 +286,24 @@ const AboutPage = () => {
                       <i className="fas fa-school"></i>
                     </div>
                     <div className="edu-title">
-                      <h3>SV Govt. Polytechnic</h3>
-                      <h4>Diploma In Computer Engineering</h4>
+                      <h3>Sri Venkateswara Government Polytechnic</h3>
+                      <h4>Diploma in Computer Engineering</h4>
                     </div>
                   </div>
                   <div className="edu-details">
                     <div className="edu-detail">
                       <i className="fas fa-calendar-alt"></i>
-                      <span>2021 - 2024</span>
+                      <span>July 2021 - May 2024</span>
                     </div>
                     <div className="edu-detail">
                       <i className="fas fa-percentage"></i>
-                      <span>GPA: 7.4/10</span>
+                      <span>Percentage: 94.6</span>
                     </div>
                   </div>
-                  {/* <div className="edu-status completed">Completed</div> */}
-                </div>
-                
-                <div className="education-card">
-                  <div className="edu-header">
-                    <div className="edu-logo">
-                      <i className="fas fa-graduation-cap"></i>
-                    </div>
-                    <div className="edu-title">
-                      <h3>Sri Chaitanya Techno School</h3>
-                      <h4>High School (10th Grade)</h4>
-                    </div>
-                  </div>
-                  <div className="edu-details">
-                    <div className="edu-detail">
-                      <i className="fas fa-calendar-alt"></i>
-                      <span>2020 - 2021</span>
-                    </div>
-                    <div className="edu-detail">
-                      <i className="fas fa-percentage"></i>
-                      <span>Marks: 597/600</span>
-                    </div>
-                  </div>
-                  {/* <div className="edu-status completed">Completed</div> */}
                 </div>
               </div>
             </div>
 
-            {/* Skills Section */}
             <div 
               id="skills"
               ref={sectionRefs.skills}
@@ -376,7 +349,6 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* Languages Section */}
             <div 
               id="languages"
               ref={sectionRefs.languages}
@@ -396,7 +368,7 @@ const AboutPage = () => {
                       <i className="fas fa-flag-usa"></i>
                       <span className="language-name">English</span>
                     </div>
-                    <span className="language-level">Fluent</span>
+                    <span className="language-level">Professional</span>
                   </div>
                   <div className="language-progress">
                     <div className="progress-dots">
@@ -430,13 +402,13 @@ const AboutPage = () => {
                       <i className="fas fa-flag"></i>
                       <span className="language-name">Hindi</span>
                     </div>
-                    <span className="language-level">Basic</span>
+                    <span className="language-level">Conversational</span>
                   </div>
                   <div className="language-progress">
                     <div className="progress-dots">
                       <i className="fas fa-circle active"></i>
-                      <i className="fas fa-circle"></i>
-                      <i className="fas fa-circle"></i>
+                      <i className="fas fa-circle active"></i>
+                      <i className="fas fa-circle active"></i>
                       <i className="fas fa-circle"></i>
                       <i className="fas fa-circle"></i>
                     </div>

@@ -16,13 +16,13 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Your contact details - Update these with your actual information
+  // Your contact details - Updated from resume
   const contactDetails = {
-    email: 'plchakradhar@gmail.com', // Replace with your Gmail
-    location: 'Proddatur, India',
-    github: 'plchakradhar',
-    linkedin: 'plchakradhar',
-    instagram: 'pl.chakradhar'
+    email: 'narendrayadavbudigi@gmail.com',
+    location: 'Chagalamarri, Kurnool, Andhra Pradesh, India',
+    github: 'Narendrabudigi',
+    linkedin: 'narendrabudigi',
+    leetcode: 'NarendraBudigi'
   };
 
   const handleInputChange = (e) => {
@@ -37,7 +37,6 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Create email content
     const emailSubject = `Portfolio Contact: ${formData.subject}`;
     const emailBody = `
 Name: ${formData.name}
@@ -48,23 +47,19 @@ Message:
 ${formData.message}
 
 ---
-This message was sent from your portfolio contact form.
+This message was sent from Narendra Budigi's portfolio contact form.
     `.trim();
 
-    // Encode for mailto URL
     const encodedSubject = encodeURIComponent(emailSubject);
     const encodedBody = encodeURIComponent(emailBody);
 
-    // Create mailto link
     const mailtoLink = `mailto:${contactDetails.email}?subject=${encodedSubject}&body=${encodedBody}`;
 
-    // Open email client
     setTimeout(() => {
       window.location.href = mailtoLink;
       setIsSubmitting(false);
       setIsSubmitted(true);
       
-      // Reset form after successful submission
       setFormData({
         name: '',
         email: '',
@@ -78,7 +73,7 @@ This message was sent from your portfolio contact form.
     const urls = {
       github: `https://github.com/${contactDetails.github}`,
       linkedin: `https://linkedin.com/in/${contactDetails.linkedin}`,
-      instagram: `https://instagram.com/${contactDetails.instagram}`
+      leetcode: `https://leetcode.com/u/${contactDetails.leetcode}`
     };
     window.open(urls[platform], '_blank');
   };
@@ -103,7 +98,7 @@ This message was sent from your portfolio contact form.
                 Get In <span>Touch</span>
               </h1>
               <p className="subtitle">
-                Have a project in mind? Let's discuss how we can work together to bring your ideas to life!
+                Interested in software development, full-stack projects, or data-driven solutions? Let’s connect and discuss opportunities to work together.
               </p>
               <div className="header-divider"></div>
             </div>
@@ -154,7 +149,7 @@ This message was sent from your portfolio contact form.
                     </div>
                     <div className="contact-text">
                       <h3>Availability</h3>
-                      <p>Open for new projects</p>
+                      <p>Open to internships and new opportunities</p>
                     </div>
                   </div>
                 </div>
@@ -186,10 +181,10 @@ This message was sent from your portfolio contact form.
                     className="social-link"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleSocialClick('instagram');
+                      handleSocialClick('leetcode');
                     }}
                   >
-                    <i className="fab fa-instagram"></i>
+                    <i className="fas fa-code"></i>
                   </a>
                   <a 
                     href={`mailto:${contactDetails.email}`} 
@@ -204,7 +199,7 @@ This message was sent from your portfolio contact form.
               <div className="contact-form-section">
                 <div className="form-header">
                   <h2>Send Message</h2>
-                  <p>Fill out the form and I'll get back to you ASAP</p>
+                  <p>Fill out the form and I'll get back to you as soon as possible</p>
                 </div>
 
                 <form className="contact-form" onSubmit={handleSubmit}>
@@ -255,7 +250,7 @@ This message was sent from your portfolio contact form.
                       value={formData.message}
                       onChange={handleInputChange}
                       className="form-textarea"
-                      placeholder="Tell me about your project, timeline, budget, or any specific requirements..."
+                      placeholder="Tell me about the opportunity, project, collaboration, or any details you'd like to discuss..."
                       required
                       minLength="10"
                     />
@@ -281,56 +276,11 @@ This message was sent from your portfolio contact form.
 
                   {isSubmitted && (
                     <div className="success-message">
-                      {/* <h3>✅ Message Ready!</h3> */}
-                      {/* <p>Your email client is opening with the message pre-filled. Please review and click send to complete the process.</p> */}
                     </div>
                   )}
                 </form>
               </div>
             </div>
-
-            {/* Map Section */}
-            {/* <div className="map-section">
-              <h2>Location</h2>
-              <div className="map-placeholder">
-                <i className="fas fa-map-marked-alt"></i>
-                <h3>Based in {contactDetails.location}</h3>
-                <p>Available for remote work and collaborations worldwide</p>
-              </div>
-            </div> */}
-
-            {/* CTA Section */}
-            {/* <div className="cta-section">
-              <div className="cta-content">
-                <h2>Ready to Start Your Project?</h2>
-                <p>
-                  I'm currently available for freelance work and new opportunities. 
-                  Whether you have a project in mind or just want to chat about potential collaboration, I'd love to hear from you!
-                </p>
-                <div className="cta-buttons">
-                  <a 
-                    href={`mailto:${contactDetails.email}`} 
-                    className="cta-btn primary"
-                  >
-                    <i className="fas fa-envelope"></i>
-                    Send Direct Email
-                  </a>
-                  <Link to="/projects" className="cta-btn secondary">
-                    <i className="fas fa-project-diagram"></i>
-                    View My Work
-                  </Link>
-                  <a 
-                    href={`https://github.com/${contactDetails.github}`} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="cta-btn primary"
-                  >
-                    <i className="fab fa-github"></i>
-                    Check GitHub
-                  </a>
-                </div>
-              </div>
-            </div> */}
           </section>
         </main>
       </div>

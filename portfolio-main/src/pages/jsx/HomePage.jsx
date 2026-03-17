@@ -13,13 +13,19 @@ const HomePage = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const buttonSoundRef = useRef(null);
   const backgroundMusicRef = useRef(null);
   const welcomeSoundRef = useRef(null);
 
-  const fullText = "P. LAKSHMI CHAKRADHAR";
-  const roles = ["CYBER SECURITY ANALYST", "Video Editor", "Photo Editor", "FULL STACK DEVELOPER"];
+  const fullText = "NARENDRA BUDIGI";
+  const roles = [
+    "DATA SCIENCE STUDENT",
+    "FULL STACK DEVELOPER",
+    "PYTHON DEVELOPER",
+    "SOFTWARE ENGINEER ASPIRANT"
+  ];
 
   // Sound effects
   const playButtonSound = () => {
@@ -39,16 +45,14 @@ const HomePage = () => {
   // Text-to-Speech for Welcome Message
   const speakWelcomeMessage = () => {
     if ('speechSynthesis' in window) {
-      // Cancel any ongoing speech
       window.speechSynthesis.cancel();
-      
+
       const speech = new SpeechSynthesisUtterance();
-      speech.text = "Welcome to Chakri's World";
+      speech.text = "Welcome to Narendra's Portfolio";
       speech.rate = 0.9;
       speech.pitch = 1;
       speech.volume = 1;
-      
-      // Wait for voices to load
+
       const voices = window.speechSynthesis.getVoices();
       if (voices.length > 0) {
         const englishVoice = voices.find(voice => voice.lang.includes('en'));
@@ -57,7 +61,6 @@ const HomePage = () => {
         }
         window.speechSynthesis.speak(speech);
       } else {
-        // If voices aren't loaded, wait and try again
         setTimeout(() => {
           const loadedVoices = window.speechSynthesis.getVoices();
           const englishVoice = loadedVoices.find(voice => voice.lang.includes('en'));
@@ -71,21 +74,13 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    // Check if this is the first time visiting the site in this browser tab
     const firstVisit = !sessionStorage.getItem('hasVisitedBefore');
-    
+
     if (firstVisit) {
-      // Mark that user has visited before in this session
       sessionStorage.setItem('hasVisitedBefore', 'true');
-      
-      // Play welcome message on first visit to the site
+
       const timer = setTimeout(() => {
-        // Choose one method - either text-to-speech OR audio file:
-        
-        // Method 1: Text-to-Speech (always available)
         speakWelcomeMessage();
-        
-        // Method 2: Audio file (if you have welcome-message.mp3)
         // playWelcomeSound();
       }, 1000);
 
@@ -95,15 +90,13 @@ const HomePage = () => {
     }
   }, []);
 
-
-  // Reset the visit flag when the page is about to be unloaded (browser closed)
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.removeItem('hasVisitedBefore');
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
@@ -113,11 +106,10 @@ const HomePage = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -129,14 +121,12 @@ const HomePage = () => {
       { threshold: 0.1 }
     );
 
-    // Observe all animate-on-scroll elements
     document.querySelectorAll('.animate-on-scroll').forEach((el) => {
       observer.observe(el);
     });
 
-    // Set initial visibility for hero section
     setIsVisible(true);
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile);
       observer.disconnect();
@@ -155,7 +145,7 @@ const HomePage = () => {
     }, 100);
 
     return () => clearInterval(nameTimer);
-  }, [fullText]);
+  }, []);
 
   useEffect(() => {
     const roleTimer = setInterval(() => {
@@ -167,7 +157,6 @@ const HomePage = () => {
           setCharIndex(charIndex + 1);
         } else {
           setIsTyping(false);
-          setTimeout(() => {}, 1500);
         }
       } else {
         if (charIndex > 0) {
@@ -181,7 +170,7 @@ const HomePage = () => {
     }, 100);
 
     return () => clearInterval(roleTimer);
-  }, [roleIndex, charIndex, isTyping, roles]);
+  }, [roleIndex, charIndex, isTyping]);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -195,8 +184,7 @@ const HomePage = () => {
 
   const handleButtonClick = () => {
     playButtonSound();
-    
-    // If music hasn't started yet due to autoplay restrictions, start it on first button click
+
     if (!isMusicPlaying && backgroundMusicRef.current) {
       backgroundMusicRef.current.play()
         .then(() => setIsMusicPlaying(true))
@@ -210,7 +198,7 @@ const HomePage = () => {
       <audio ref={buttonSoundRef}>
         <source src={import.meta.env.BASE_URL + 'sounds/button-click.mp3'} type="audio/mpeg" />
       </audio>
-      
+
       {/* Background Music */}
       <audio ref={backgroundMusicRef} loop>
         <source src={import.meta.env.BASE_URL + 'sounds/background-music.mp3'} type="audio/mpeg" />
@@ -223,11 +211,9 @@ const HomePage = () => {
         <source src={import.meta.env.BASE_URL + 'sounds/welcome-message.mp3'} type="audio/mpeg" />
       </audio>
 
-      {/* Common Background Animations */}
       <BackgroundAnimations />
 
-      {/* Common Navigation */}
-      <Navigation 
+      <Navigation
         showMenu={showMenu}
         isMobile={isMobile}
         toggleMenu={toggleMenu}
@@ -235,34 +221,36 @@ const HomePage = () => {
         currentPage="home"
       />
 
-      {/* Main Content */}
       <div className={`content-overlay ${showMenu && isMobile ? 'expanded' : ''}`}>
         <main className="main-content">
           <section className={`hero-section ${isVisible ? 'animate-visible' : ''}`}>
             <div className="hero-content">
               <h4 className="text-gradient animate-fade-in animate-on-scroll delay-1">HELLO, I'M</h4>
+
               <h1 className="typing-animation animate-slide-up animate-on-scroll delay-2">
-                {/* {displayText} */}Pothuganti Lakshmi Chakradhar
+                Narendra Budigi
                 <span className="cursor">|</span>
-              </h1>      
+              </h1>
+
               <div className="about-container animate-slide-up animate-on-scroll delay-3">
                 <span>I AM A</span>
                 <span id="changing-text">{changingText}</span>
                 <span className="text-cursor">|</span>
               </div>
+
               <div className="btech animate-fade-in animate-on-scroll delay-4">
                 PURSUING MY <span>B.TECH</span> DEGREE AT <span>KL UNIVERSITY</span>
               </div>
 
               <div className="hacking-info">
                 <p className="animate-fade-in-delay-1 animate-on-scroll delay-1">
-                   Ex Intern At @CodeOn Technologies, Tirupati
+                  Python & Web Development Intern at Young Mind Technologies
                 </p>
                 <p className="animate-fade-in-delay-2 animate-on-scroll delay-2">
-                  Developed a SAMS(Student Attendance Management System) Project in Dimploma In Engineering
+                  Skilled in Java, Python, SQL, React, Django, Spring Boot, Docker, and CI/CD
                 </p>
                 <p className="animate-fade-in-delay-3 animate-on-scroll delay-3">
-                  Worked On a Several Projects with API's, Frontend, Backend Development
+                  Built real-world projects like Event Flow, Service Hub Website, and Sentiment Analysis of E-Commerce Reviews
                 </p>
               </div>
             </div>
@@ -270,37 +258,32 @@ const HomePage = () => {
             <div className="hero-image animate-slide-right animate-on-scroll delay-4">
               <div className="image-container">
                 <div className="hacking-frame">
-                  <img 
-                    src={import.meta.env.BASE_URL + 'assets/chakri.JPG'} 
-                    alt="P. Lakshmi Chakradhar" 
-                    className="profile-img" 
+                  <img
+                    src={import.meta.env.BASE_URL + 'assets/nandu-profile.jpg'}
+                    alt="Narendra Budigi"
+                    className="profile-img"
                     onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x500/00ff00/000000?text=P.+LAKSHMI+CHAKRADHAR';
+                      e.target.src = 'https://via.placeholder.com/400x500/00ff00/000000?text=NARENDRA+BUDIGI';
                     }}
                   />
                   <div className="glow-effect"></div>
                 </div>
-                {/* <div className="tech-badge">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>Python</span>
-                </div> */}
               </div>
             </div>
           </section>
 
           <div className="action-buttons animate-on-scroll">
-            <a 
-              href="https://github.com/plchakradhar" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://github.com/Narendrabudigi"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn github-btn animate-on-scroll delay-1"
               onClick={handleButtonClick}
             >
               <i className="fab fa-github"></i>
               <span>GitHub</span>
             </a>
-            
+
             <Link to="/projects" className="btn projects-btn animate-on-scroll delay-2" onClick={handleButtonClick}>
               <i className="fas fa-project-diagram"></i>
               <span>View Projects</span>
@@ -311,25 +294,25 @@ const HomePage = () => {
             <div className="link-card animate-slide-up-delay-1 animate-on-scroll delay-1">
               <i className="fas fa-laptop-code"></i>
               <h3>TECH STACK</h3>
-              <p>Explore my technical skills and cybersecurity tools that I use to build secure applications</p>
+              <p>Explore my technical skills in programming, full stack development, data science, and modern development tools</p>
               <Link to="/skills" className="btn-link" onClick={handleButtonClick}>
                 VIEW SKILLS <i className="fas fa-arrow-right"></i>
               </Link>
             </div>
-            
+
             <div className="link-card animate-slide-up-delay-2 animate-on-scroll delay-2">
               <i className="fas fa-tasks"></i>
               <h3>PROJECTS</h3>
-              <p>Discover my security-focused projects and innovative applications with real-world impact</p>
+              <p>Discover my full-stack and machine learning projects built using Django, PHP, MySQL, Python, and modern web technologies</p>
               <Link to="/projects" className="btn-link" onClick={handleButtonClick}>
                 VIEW PROJECTS <i className="fas fa-arrow-right"></i>
               </Link>
             </div>
-            
+
             <div className="link-card animate-slide-up-delay-3 animate-on-scroll delay-3">
-              <i className="fas fa-shield-alt"></i>
+              <i className="fas fa-award"></i>
               <h3>ACHIEVEMENTS</h3>
-              <p>Check out my certifications, awards, and security achievements in the tech industry</p>
+              <p>Check out my certifications, academic achievements, internship experience, and coding progress</p>
               <Link to="/achievements" className="btn-link" onClick={handleButtonClick}>
                 VIEW ACHIEVEMENTS <i className="fas fa-arrow-right"></i>
               </Link>

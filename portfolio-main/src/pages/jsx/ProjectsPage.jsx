@@ -9,7 +9,7 @@ const ProjectsPage = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [visibleElements, setVisibleElements] = useState(new Set());
-  
+
   const sectionRef = useRef(null);
   const projectsRef = useRef(null);
   const statsRef = useRef(null);
@@ -18,90 +18,88 @@ const ProjectsPage = () => {
     completed: [
       {
         id: 1,
-        title: "Online Doctor Appointment System",
-        description: "A comprehensive platform enabling patients to book, manage, and track medical appointments with healthcare providers through an intuitive interface.",
-        image: import.meta.env.BASE_URL + 'assets/projects/sams/sams3.png',
-        technologies: [],
-        liveDemo: "https://plchakradhar.github.io/SAMS/",
-        github: "https://github.com/plchakradhar/prescripto-healthcare.git",
-        features: [],
-        award: false
+        title: "Event Flow - Campus Event Manager",
+        description:
+          "A centralized platform that allows students to view, register, and participate in campus events through a smooth and organized interface.",
+        images: [
+          import.meta.env.BASE_URL + 'assets/projects/eventflow/event1.png',
+          import.meta.env.BASE_URL + 'assets/projects/eventflow/event2.png',
+          import.meta.env.BASE_URL + 'assets/projects/eventflow/event3.png'
+        ],
+        technologies: ["HTML", "CSS", "JavaScript", "Python", "Django", "MySQL"],
+        liveDemo: "#",
+        github: "#",
+        features: [
+          "Student event registration",
+          "Admin dashboard",
+          "Resource upload management",
+          "Activity tracking",
+          "Secure MySQL database integration"
+        ],
+        award: false,
+        status: "completed"
       },
       {
         id: 2,
-        title: "SAMS - Student Attendance Management System",
-        description: "Full-stack attendance management system with real-time tracking, reporting, and analytics for educational institutions.",
+        title: "Service Hub Website",
+        description:
+          "A service-booking platform connecting users with local service providers such as electricians and plumbers, with secure booking and profile management features.",
         images: [
-          import.meta.env.BASE_URL + 'assets/projects/sams/sams1.png',
-          import.meta.env.BASE_URL + 'assets/projects/sams/sams2.png',
-          import.meta.env.BASE_URL + 'assets/projects/sams/sams3.png',
-          import.meta.env.BASE_URL + 'assets/projects/sams/sams4.png'
+          import.meta.env.BASE_URL + 'assets/projects/servicehub/service1.png',
+          import.meta.env.BASE_URL + 'assets/projects/servicehub/service2.png',
+          import.meta.env.BASE_URL + 'assets/projects/servicehub/service3.png'
         ],
-        technologies: [],
-        liveDemo: "https://plchakradhar.github.io/SAMS/",
-        github: "https://github.com/plchakradhar/SAMS.git",
-        features: [],
-        award: true
-      },
-      {
-        id: 3,
-        title: "Employee Management System",
-        description:"Full-stack employee management system with real-time tracking, reporting, and analytics for IT company.",
-        images: [
-          import.meta.env.BASE_URL + 'assets/projects/ems/ems1.png',
-          import.meta.env.BASE_URL + 'assets/projects/ems/ems2.png',
-          import.meta.env.BASE_URL + 'assets/projects/ems/esm3.png',
-          import.meta.env.BASE_URL + 'assets/projects/ems/ems4.png',
-          import.meta.env.BASE_URL + 'assets/projects/ems/ems5.png',
-          import.meta.env.BASE_URL + 'assets/projects/ems/ems6.png'
+        technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+        liveDemo: "#",
+        github: "#",
+        features: [
+          "Service booking system",
+          "Secure login and authentication",
+          "Provider profile management",
+          "Booking history tracking",
+          "Responsive user interface"
         ],
-        technologies: [],
-        liveDemo: "https://plchakradhar.github.io/SAMS/",
-        github: "https://github.com/plchakradhar/SAMS.git",
-        features: [],
-        award: true
+        award: true,
+        status: "completed"
       }
     ],
     ongoing: [
-      // {
-      // id: 3,
-      // title: "Random Video Call Platform",
-      // description: "A real-time video communication platform with secure peer-to-peer connections and interactive features.",
-      // image: "/src/assets/projects/video-call.jpg",
-      // technologies: ["WebRTC", "Socket.io", "React", "Node.js", "PostgreSQL"],
-      // liveDemo: "#",
-      // github: "#",
-      // status: "ongoing",
-      // progress: 25,
-      // features: ["P2P connections", "Screen sharing", "Chat functionality", "User authentication"],
-      // award: false
-      // }
+      {
+        id: 3,
+        title: "Sentiment Analysis of E-Commerce Reviews",
+        description:
+          "A machine learning-based application that classifies customer reviews into positive, neutral, and negative sentiments using NLP preprocessing and predictive models.",
+        images: [
+          import.meta.env.BASE_URL + 'assets/projects/sentiment/sentiment1.png',
+          import.meta.env.BASE_URL + 'assets/projects/sentiment/sentiment2.png',
+          import.meta.env.BASE_URL + 'assets/projects/sentiment/sentiment3.png'
+        ],
+        technologies: ["Python", "Django", "Scikit-Learn", "NLTK", "TF-IDF"],
+        liveDemo: "#",
+        github: "#",
+        status: "ongoing",
+        progress: 85,
+        features: [
+          "Sentiment classification",
+          "Text preprocessing pipeline",
+          "TF-IDF feature extraction",
+          "Logistic Regression & Naive Bayes",
+          "Batch review analysis"
+        ],
+        award: false
+      }
     ],
-    upcoming: [
-    // {
-    // id: 4,
-    // title: "AI-Powered Code Review Assistant",
-    // description: "Intelligent code analysis tool that provides automated code reviews and suggestions using machine learning.",
-    // image: "/src/assets/projects/ai-code.jpg",
-    // technologies: ["Python", "TensorFlow", "FastAPI", "React", "Docker"],
-    // liveDemo: "#",
-    // github: "#",
-    // status: "upcoming",
-    // features: ["AI code analysis", "Security detection", "Performance optimization", "GitHub integration"],
-    // award: false
-    // }
-    ]
+    upcoming: []
   };
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-   
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -110,7 +108,6 @@ const ProjectsPage = () => {
       });
     }, { threshold: 0.1, rootMargin: '-50px' });
 
-    // Observe all animatable elements
     const animatableElements = document.querySelectorAll(
       '.section-header, .project-card, .stat-card'
     );
@@ -141,16 +138,17 @@ const ProjectsPage = () => {
     const [isHovered, setIsHovered] = useState(false);
     const cardRef = useRef(null);
 
-    // Auto-slide images every 3 seconds
     useEffect(() => {
       if (!project.images || project.images.length <= 1) return;
+
       const interval = setInterval(() => {
-        if (isHovered) return; // Pause on hover
-       
+        if (isHovered) return;
+
         setCurrentImageIndex((prevIndex) =>
           prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
         );
-      }, 1000); // Change image every 3 seconds
+      }, 1000);
+
       return () => clearInterval(interval);
     }, [project.images, isHovered]);
 
@@ -168,18 +166,16 @@ const ProjectsPage = () => {
       );
     };
 
-    // Fallback if images array is not provided
     const displayImage = project.images
       ? project.images[currentImageIndex]
       : project.image;
 
-    // Determine animation direction based on index
     const animationDirection = index % 2 === 0 ? 'slide-in-left' : 'slide-in-right';
 
     return (
-      <div 
+      <div
         ref={cardRef}
-        key={project.id} 
+        key={project.id}
         className={`project-card ${visibleElements.has(cardRef.current) ? animationDirection : 'hidden'}`}
         data-status={project.status}
       >
@@ -196,8 +192,7 @@ const ProjectsPage = () => {
                 e.target.src = `https://via.placeholder.com/400x200/00ff00/000000?text=${project.title.split(' ')[0]}`;
               }}
             />
-           
-            {/* Image Navigation Dots */}
+
             {project.images && project.images.length > 1 && (
               <div className="image-dots">
                 {project.images.map((_, index) => (
@@ -209,7 +204,7 @@ const ProjectsPage = () => {
                 ))}
               </div>
             )}
-            {/* Navigation Arrows for Manual Control */}
+
             {project.images && project.images.length > 1 && isHovered && (
               <>
                 <button className="nav-arrow prev" onClick={handlePrevImage}>
@@ -220,6 +215,7 @@ const ProjectsPage = () => {
                 </button>
               </>
             )}
+
             <div className="project-overlay">
               <div className="project-actions">
                 {project.liveDemo !== '#' && (
@@ -234,6 +230,7 @@ const ProjectsPage = () => {
                 )}
               </div>
             </div>
+
             {project.award && (
               <div className="award-badge">
                 <i className="fas fa-trophy"></i>
@@ -242,10 +239,11 @@ const ProjectsPage = () => {
             )}
           </div>
         </div>
+
         <div className="project-content">
           <h3 className="project-title">{project.title}</h3>
           <p className="project-description">{project.description}</p>
-         
+
           {project.features && project.features.length > 0 && (
             <div className="project-features">
               {project.features.map((feature, index) => (
@@ -256,6 +254,7 @@ const ProjectsPage = () => {
               ))}
             </div>
           )}
+
           {project.technologies && project.technologies.length > 0 && (
             <div className="project-tech">
               {project.technologies.map((tech, index) => (
@@ -263,6 +262,7 @@ const ProjectsPage = () => {
               ))}
             </div>
           )}
+
           {project.status === 'ongoing' && (
             <div className="project-progress">
               <div className="progress-info">
@@ -280,6 +280,7 @@ const ProjectsPage = () => {
               </div>
             </div>
           )}
+
           <div className="project-links">
             {project.liveDemo !== '#' && (
               <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="btn-link demo">
@@ -287,12 +288,14 @@ const ProjectsPage = () => {
                 Live Demo
               </a>
             )}
+
             {project.github !== '#' && (
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-link code">
                 <i className="fab fa-github"></i>
                 Source Code
               </a>
             )}
+
             {project.status === 'upcoming' && (
               <button className="btn-link upcoming">
                 <i className="fas fa-clock"></i>
@@ -301,6 +304,7 @@ const ProjectsPage = () => {
             )}
           </div>
         </div>
+
         <div className="project-glow"></div>
       </div>
     );
@@ -308,7 +312,7 @@ const ProjectsPage = () => {
 
   const renderProjects = () => {
     let filteredProjects = [];
-   
+
     if (activeFilter === 'all') {
       filteredProjects = [
         ...projects.completed,
@@ -334,21 +338,22 @@ const ProjectsPage = () => {
         closeMenu={closeMenu}
         currentPage="projects"
       />
+
       <div className={`content-overlay ${showMenu && isMobile ? 'expanded' : ''}`}>
         <main className="main-content">
           <section ref={sectionRef} className="projects-section">
             <div className={`section-header ${visibleElements.has(sectionRef.current) ? 'fade-in-up' : 'hidden'}`}>
               <h1 className="text-gradient">My <span>Projects</span></h1>
-              <p className="subtitle">Building digital solutions that make a difference</p>
+              <p className="subtitle">Building digital solutions that solve real-world problems</p>
               <div className="header-divider"></div>
             </div>
-            
+
             <div className="projects-container">
               <div className="projects-grid">
                 {renderProjects()}
               </div>
             </div>
-            
+
             <div ref={statsRef} className="projects-stats">
               <div className={`stat-card ${visibleElements.has(statsRef.current) ? 'slide-in-left' : 'hidden'}`}>
                 <div className="stat-icon">
@@ -359,6 +364,7 @@ const ProjectsPage = () => {
                   <p>Completed</p>
                 </div>
               </div>
+
               <div className={`stat-card ${visibleElements.has(statsRef.current) ? 'fade-in-up' : 'hidden'}`}>
                 <div className="stat-icon">
                   <i className="fas fa-sync-alt"></i>
@@ -368,6 +374,7 @@ const ProjectsPage = () => {
                   <p>In Progress</p>
                 </div>
               </div>
+
               <div className={`stat-card ${visibleElements.has(statsRef.current) ? 'fade-in-up' : 'hidden'}`}>
                 <div className="stat-icon">
                   <i className="fas fa-lightbulb"></i>
@@ -377,6 +384,7 @@ const ProjectsPage = () => {
                   <p>Coming Soon</p>
                 </div>
               </div>
+
               <div className={`stat-card ${visibleElements.has(statsRef.current) ? 'slide-in-right' : 'hidden'}`}>
                 <div className="stat-icon">
                   <i className="fas fa-code"></i>

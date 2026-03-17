@@ -14,60 +14,74 @@ const AchievementsPage = () => {
   const achievements = [
     {
       id: 1,
-      title: "Orcale Certified Associate",
-      image: import.meta.env.BASE_URL + 'assets/certificates/global-oracle.jpg',
-      certificateLink: "https://brm-certview.oracle.com/ords/certview/ecertificate?ssn=OC7159408&trackId=OCI25CAA&key=ba2714a642974791d7653beaa72e261110c35fdd",
-      category: "Frontend"
+      title: "Python Internship - YoungMinds Technology Solutions Pvt. Ltd.",
+      image: import.meta.env.BASE_URL + 'assets/certificates/python-internship.jpg',
+      certificateLink: "#",
+      category: "Internship"
     },
     {
       id: 2,
-      title: "Cyber Security Analyst Job Simulation",
-      image: import.meta.env.BASE_URL + 'assets/certificates/forage.png',
-      certificateLink: "https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_SoXApy3sshTmjpXHn_1751900699946_completion_certificate.pdf",
-      category: "Backend"
-    },
-    {
-      id: 3,
-      title: "Jenkins - From Zero to Hero Specialization",
-      image: import.meta.env.BASE_URL + 'assets/certificates/learnkarts.png',
-      certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/E9CLN28MMDJG",
+      title: "Programming in Java - NPTEL",
+      image: import.meta.env.BASE_URL + 'assets/certificates/nptel-java.jpg',
+      certificateLink: "#",
       category: "Programming"
     },
     {
+      id: 3,
+      title: "Google AI/ML Virtual Internship - AICTE & Google",
+      image: import.meta.env.BASE_URL + 'assets/certificates/google-aiml.jpg',
+      certificateLink: "#",
+      category: "AI/ML"
+    },
+    {
       id: 4,
-      title: "CI/CD Pipeline with Docker",
-      image: import.meta.env.BASE_URL + 'assets/certificates/cicd.png',
-      certificateLink: "https://www.coursera.org/account/accomplishments/verify/7TNIWNDDMCR7",
-      category: "Security"
+      title: "Data Science using Python - NPTEL",
+      image: import.meta.env.BASE_URL + 'assets/certificates/data-science-python.jpg',
+      certificateLink: "#",
+      category: "Data Science"
     },
     {
       id: 5,
-      title: "Fundamentals of Ansible",
-      image: import.meta.env.BASE_URL + 'assets/certificates/redhat.png',
-      certificateLink: "https://coursera.org/share/0a44f6756afbace88c569adfa6777f52",
-      category: "Database"
+      title: "Software Engineer Role Certification - HackerRank",
+      image: import.meta.env.BASE_URL + 'assets/certificates/hackerrank-se.jpg',
+      certificateLink: "#",
+      category: "Programming"
     },
     {
       id: 6,
-      title: "Advanced Exploitation and Scripting Techniques",
-      image: import.meta.env.BASE_URL + 'assets/certificates/packt.png',
-      certificateLink: "https://coursera.org/share/60f681feeabb0176f9a09a344917baf0",
+      title: "CI/CD Pipelines with Jenkins & Docker - ICT Academy / AWS Academy",
+      image: import.meta.env.BASE_URL + 'assets/certificates/jenkins-docker.jpg',
+      certificateLink: "#",
       category: "DevOps"
     },
     {
       id: 7,
-      title: "Real-Time Cyber Threat Detection and Mitigation",
-      image: import.meta.env.BASE_URL + 'assets/certificates/threatdetection.png',
-      certificateLink: "https://coursera.org/share/fe0b50d7716cd79ef60ddd15f683aa7b",
-      category: "Cloud"
+      title: "Academic Topper in Diploma in Computer Science",
+      image: import.meta.env.BASE_URL + 'assets/certificates/academic-topper.jpg',
+      certificateLink: "#",
+      category: "Achievement"
     },
     {
       id: 8,
-      title: "CI/CD with Jenkins",
-      image: import.meta.env.BASE_URL + 'assets/certificates/cicdjenkins.png',
-      certificateLink: "https://coursera.org/share/2a08b0beb4e2e763d58e88271e20cafb",
-      category: "Programming"
+      title: "2nd Prize in TechFest for Service Hub Website",
+      image: import.meta.env.BASE_URL + 'assets/certificates/techfest-prize.jpg',
+      certificateLink: "#",
+      category: "Achievement"
     },
+    {
+      id: 9,
+      title: "Solved 250+ Coding Problems",
+      image: import.meta.env.BASE_URL + 'assets/certificates/coding-achievement.jpg',
+      certificateLink: "https://leetcode.com/u/NarendraBudigi/",
+      category: "Coding"
+    },
+    {
+      id: 10,
+      title: "Built Multiple Full-Stack Applications",
+      image: import.meta.env.BASE_URL + 'assets/certificates/fullstack-projects.jpg',
+      certificateLink: "https://github.com/Narendrabudigi",
+      category: "Projects"
+    }
   ];
 
   useEffect(() => {
@@ -156,6 +170,7 @@ const AchievementsPage = () => {
           </div>
           <div className="certificate-title">
             <h3>{achievement.title}</h3>
+            <span className="achievement-category">{achievement.category}</span>
           </div>
         </a>
       </div>
@@ -187,9 +202,21 @@ const AchievementsPage = () => {
                 My <span>Achievements</span>
               </h1>
               <p className="subtitle">
-                Verified certifications showcasing my expertise and continuous learning journey
+                Certifications, accomplishments, and milestones from my learning and development journey
               </p>
               <div className="header-divider"></div>
+            </div>
+
+            {/* Stats */}
+            <div className="achievement-stats scroll-animate">
+              <div className="stat-card">
+                <h2>{totalAchievements}</h2>
+                <p>Total Achievements</p>
+              </div>
+              <div className="stat-card">
+                <h2>{categoryCount}</h2>
+                <p>Categories</p>
+              </div>
             </div>
 
             {/* Achievements Grid */}
