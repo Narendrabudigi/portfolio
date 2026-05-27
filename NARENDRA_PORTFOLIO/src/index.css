@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #06b6d4; /* cyan-500 */
+  --color-secondary: #4f46e5; /* indigo-600 */
+  --color-background: #0f172a; /* slate-900 */
+  --color-surface: #1e293b; /* slate-800 */
+  
+  --font-sans: "Inter", "Outfit", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-200 antialiased selection:bg-primary/30 selection:text-primary;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: var(--color-surface);
+    background-color: color-mix(in srgb, var(--color-surface), transparent 50%);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--color-slate-700), transparent 50%);
+  }
+  
+  .glass-card {
+    background-color: var(--color-surface);
+    background-color: color-mix(in srgb, var(--color-surface), transparent 50%);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--color-slate-700), transparent 50%);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .glass-card:hover {
+    border-color: color-mix(in srgb, var(--color-primary), transparent 50%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
